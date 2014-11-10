@@ -4,6 +4,8 @@
  */
 package com.fii.homework.main;
 
+import java.util.Scanner;
+
 import com.fii.homework.model.PiNumber;
 
 /**
@@ -22,9 +24,9 @@ public class Main {
 
         PiNumber piNumber = new PiNumber();
         if (args.length > 0) {
-            piNumber.buildDecimals(args[0]);
+            buildDecimalsWithCorrectInput(piNumber, args[0]);
         } else {
-            piNumber.buildDecimals("");
+            buildDecimalsWithCorrectInput(piNumber);
         }
         piNumber.buildNumber();
         long t3 = System.currentTimeMillis();
@@ -32,5 +34,44 @@ public class Main {
         System.out.println("Pi=" + piNumber.getValue().toString());
         System.out.println("Timpul executiei programului(milisecunde): "
                 + (t3 - t1));
+    }
+
+    /**
+     * @param piNumber
+     */
+    private static void buildDecimalsWithCorrectInput(PiNumber piNumber) {
+        Scanner scan = new Scanner(System.in);
+        boolean testCondition = true;
+        String decimals = "";
+        while (testCondition) {
+            try {
+                piNumber.buildDecimals(decimals);
+                testCondition = false;
+            } catch (NumberFormatException e) {
+                System.out.println("Va rugam introduceti un numar natural:");
+                decimals = scan.nextLine();
+            }
+        }
+        scan.close();
+    }
+
+    /**
+     * @param piNumber
+     */
+    private static void buildDecimalsWithCorrectInput(PiNumber piNumber,
+            String value) {
+        Scanner scan = new Scanner(System.in);
+        boolean testCondition = true;
+        String decimals = value;
+        while (testCondition) {
+            try {
+                piNumber.buildDecimals(decimals);
+                testCondition = false;
+            } catch (NumberFormatException e) {
+                System.out.println("Va rugam introduceti un numar natural:");
+                decimals = scan.nextLine();
+            }
+        }
+        scan.close();
     }
 }
