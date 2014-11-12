@@ -1,7 +1,7 @@
 /**
  * 
  */
-package com.fii.homewok.model;
+package com.fii.homework.model;
 
 import static org.junit.Assert.*;
 
